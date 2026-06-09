@@ -41,3 +41,6 @@ testem.log
 # System files
 .DS_Store
 Thumbs.db
+
+# Database (runtime data — schema lives in backend/db/database.js)
+*.db
