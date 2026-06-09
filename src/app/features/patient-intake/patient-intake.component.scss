@@ -1,0 +1,18 @@
+.intake-layout {
+  display: grid;
+  grid-template-columns: 1fr 440px;
+  gap: 24px;
+  max-width: 1400px;
+}
+
+.intake-left {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.intake-right {
+  position: sticky;
+  top: 24px;
+  align-self: start;
+}

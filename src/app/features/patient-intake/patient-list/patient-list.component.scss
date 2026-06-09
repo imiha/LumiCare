@@ -1,0 +1,70 @@
+.list-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 16px;
+}
+
+.list-title {
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--gold);
+  margin: 0;
+  white-space: nowrap;
+}
+
+.count {
+  font-size: 12px;
+  font-weight: 400;
+  color: var(--text-muted);
+  margin-left: 4px;
+}
+
+.search-input {
+  max-width: 280px;
+}
+
+.patient-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.patient-table th {
+  text-align: left;
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--text-muted);
+  padding: 8px 12px;
+  border-bottom: 1px solid var(--border);
+}
+
+.patient-table td {
+  padding: 12px;
+  border-bottom: 1px solid var(--border);
+}
+
+.patient-row {
+  cursor: pointer;
+  transition: background 0.15s;
+}
+
+.patient-row:hover {
+  background: var(--navy-light);
+}
+
+.patient-row.selected {
+  background: color-mix(in srgb, var(--gold) 10%, transparent);
+}
+
+.name-cell {
+  font-weight: 500;
+}
+
+.empty-state {
+  text-align: center;
+  color: var(--text-muted);
+  padding: 32px;
+}

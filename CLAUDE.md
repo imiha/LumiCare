@@ -76,7 +76,7 @@ PO approves story
 - `HttpClient` configured via `provideHttpClient()` in `app.config.ts`
 - Every SQLite write must call `save()` to persist to disk
 
-Claude reaches the codebase at `C:\LikeAHuman\CliniqueLumiere\`.
+Claude reaches the codebase at `C:\LikeAHuman\LumiCare\`.
 
 ---
 
@@ -84,12 +84,19 @@ Claude reaches the codebase at `C:\LikeAHuman\CliniqueLumiere\`.
 
 | Artifact | Location | Owner | Purpose |
 |---|---|---|---|
-| PRD | `PRD.md` | PO | Epics, features, stories, acceptance criteria |
-| CLAUDE.md | `CLAUDE.md` | Team | Shared working agreement — read every session |
-| ADRs | `docs/adr/` | Devs | Short records of key architecture decisions |
-| Changelog | `CHANGELOG.md` | Devs + Claude | One line per completed story: what changed and why |
+| PRD | [`PRD.md`](PRD.md) | PO | Epics, features, stories, acceptance criteria |
+| CLAUDE.md | [`CLAUDE.md`](CLAUDE.md) | Team | Shared working agreement — read every session |
+| ADRs | [`docs/adr/`](docs/adr/README.md) | Devs | Short records of key architecture decisions |
+| Coding standards | [`.coding-standards/README.md`](.coding-standards/README.md) | Devs | TypeScript, Angular, Express rules and pre-commit checklist |
+| Changelog | [`CHANGELOG.md`](CHANGELOG.md) | Devs + Claude | One line per completed story: what changed and why |
 
-**Naming conventions:**
+**How to use these artifacts:**
+- Before starting a story: re-read the relevant section of `PRD.md` and check `docs/adr/` for any decisions that affect the feature
+- Before committing: run the pre-commit checklist in `.coding-standards/README.md`
+- After a decision with long-term impact: add an ADR using the template at `docs/adr/ADR-000-template.md`
+- After completing a story: add one line to `CHANGELOG.md`
+
+**Naming conventions (summary — full rules in `.coding-standards/README.md`):**
 - Files: `kebab-case.component.ts`, `kebab-case.service.ts`
 - Components: `PascalCase` class names, `app-*` selector prefix
 - Signals: named after what they hold — `patients`, `loading`, `selectedPatient`

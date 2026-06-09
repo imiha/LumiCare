@@ -1,0 +1,18 @@
+<div class="intake-layout">
+  <div class="intake-left">
+    <app-patient-form (patientCreated)="onPatientCreated($event)" />
+    <app-patient-list
+      [patients]="patients()"
+      [loading]="loading()"
+      (patientSelected)="onPatientSelected($event)"
+    />
+  </div>
+  @if (selectedPatient()) {
+    <div class="intake-right">
+      <app-patient-detail
+        [patient]="selectedPatient()"
+        (patientUpdated)="onPatientUpdated($event)"
+      />
+    </div>
+  }
+</div>

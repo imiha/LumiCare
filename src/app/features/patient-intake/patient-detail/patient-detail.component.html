@@ -1,0 +1,97 @@
+<div class="card detail-panel">
+  @if (patient()) {
+    <div class="detail-header">
+      <h2 class="detail-title">{{ patient()!.firstName }} {{ patient()!.lastName }}</h2>
+      <span class="patient-id">#{{ patient()!.id }}</span>
+    </div>
+
+    <form [formGroup]="form" (ngSubmit)="onSave()">
+      <div class="section-label">Personal Details</div>
+
+      <div class="field-row">
+        <div class="field">
+          <label>First Name</label>
+          <input formControlName="firstName" />
+        </div>
+        <div class="field">
+          <label>Last Name</label>
+          <input formControlName="lastName" />
+        </div>
+      </div>
+
+      <div class="field">
+        <label>Email</label>
+        <input type="email" formControlName="email" />
+      </div>
+
+      <div class="field-row">
+        <div class="field">
+          <label>Phone</label>
+          <input formControlName="phone" />
+        </div>
+        <div class="field">
+          <label>Date of Birth</label>
+          <input type="date" formControlName="dateOfBirth" />
+        </div>
+      </div>
+
+      <div class="field">
+        <label>Gender</label>
+        <select formControlName="gender">
+          <option value="">Select...</option>
+          <option value="F">Female</option>
+          <option value="M">Male</option>
+          <option value="X">Other</option>
+        </select>
+      </div>
+
+      <div class="field-row">
+        <div class="field">
+          <label>Emergency Contact Name</label>
+          <input formControlName="emergencyContactName" />
+        </div>
+        <div class="field">
+          <label>Emergency Contact Phone</label>
+          <input formControlName="emergencyContactPhone" />
+        </div>
+      </div>
+
+      <button type="button" class="section-toggle" (click)="toggleHistory()">
+        Medical History
+        <span class="toggle-icon">{{ historyExpanded() ? '▲' : '▼' }}</span>
+      </button>
+
+      @if (historyExpanded()) {
+        <div class="history-section">
+          <div class="field">
+            <label>Allergies</label>
+            <textarea formControlName="allergies" rows="2" placeholder="Known allergies..."></textarea>
+          </div>
+          <div class="field">
+            <label>Current Medications</label>
+            <textarea formControlName="medications" rows="2" placeholder="Current medications..."></textarea>
+          </div>
+          <div class="field">
+            <label>Medical Conditions</label>
+            <textarea formControlName="conditions" rows="2" placeholder="Existing conditions..."></textarea>
+          </div>
+          <div class="field">
+            <label>Notes</label>
+            <textarea formControlName="notes" rows="3" placeholder="Additional notes..."></textarea>
+          </div>
+        </div>
+      }
+
+      <div class="form-actions">
+        <button type="submit" class="btn-primary" [disabled]="saving()">
+          {{ saving() ? 'Saving...' : 'Save Changes' }}
+        </button>
+        @if (saveSuccess()) {
+          <span class="success-text">Changes saved</span>
+        }
+      </div>
+    </form>
+  } @else {
+    <div class="empty-state">Select a patient to view and edit their record.</div>
+  }
+</div>

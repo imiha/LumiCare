@@ -1,0 +1,69 @@
+<div class="card">
+  <h2 class="form-title">New Patient</h2>
+  <form [formGroup]="form" (ngSubmit)="onSubmit()">
+    <div class="field-row">
+      <div class="field">
+        <label for="firstName">First Name *</label>
+        <input id="firstName" formControlName="firstName" placeholder="Marie" />
+        @if (form.get('firstName')?.invalid && form.get('firstName')?.touched) {
+          <span class="error-text">Required</span>
+        }
+      </div>
+      <div class="field">
+        <label for="lastName">Last Name *</label>
+        <input id="lastName" formControlName="lastName" placeholder="Dupont" />
+        @if (form.get('lastName')?.invalid && form.get('lastName')?.touched) {
+          <span class="error-text">Required</span>
+        }
+      </div>
+    </div>
+
+    <div class="field">
+      <label for="email">Email *</label>
+      <input id="email" type="email" formControlName="email" placeholder="marie@example.com" />
+      @if (form.get('email')?.invalid && form.get('email')?.touched) {
+        <span class="error-text">Valid email required</span>
+      }
+      @if (emailError()) {
+        <span class="error-text">{{ emailError() }}</span>
+      }
+    </div>
+
+    <div class="field-row">
+      <div class="field">
+        <label for="phone">Phone</label>
+        <input id="phone" formControlName="phone" placeholder="+31 6 12345678" />
+      </div>
+      <div class="field">
+        <label for="dateOfBirth">Date of Birth</label>
+        <input id="dateOfBirth" type="date" formControlName="dateOfBirth" />
+      </div>
+    </div>
+
+    <div class="field">
+      <label for="gender">Gender</label>
+      <select id="gender" formControlName="gender">
+        <option value="">Select...</option>
+        <option value="F">Female</option>
+        <option value="M">Male</option>
+        <option value="X">Other / Prefer not to say</option>
+      </select>
+    </div>
+
+    <div class="section-divider">Emergency Contact</div>
+    <div class="field-row">
+      <div class="field">
+        <label for="ecName">Name</label>
+        <input id="ecName" formControlName="emergencyContactName" placeholder="Jean Dupont" />
+      </div>
+      <div class="field">
+        <label for="ecPhone">Phone</label>
+        <input id="ecPhone" formControlName="emergencyContactPhone" placeholder="+31 6 87654321" />
+      </div>
+    </div>
+
+    <button type="submit" class="btn-primary submit-btn" [disabled]="form.invalid || submitting()">
+      {{ submitting() ? 'Saving...' : 'Register Patient' }}
+    </button>
+  </form>
+</div>
