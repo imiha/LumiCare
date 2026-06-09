@@ -49,7 +49,7 @@ export class PatientListComponent {
           });
         }, 300);
       }
-    });
+    }, { allowSignalWrites: true });
   }
 
   onSelect(patient: Patient): void {
