@@ -3,6 +3,8 @@
 This file is the shared way of work between the team and Claude.
 Both humans and Claude read it at the start of every session.
 
+@.claude/skills/feature-delivery/SKILL.md
+
 ---
 
 ## 1. Roles — Who are we?
