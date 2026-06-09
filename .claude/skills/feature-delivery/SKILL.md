@@ -14,6 +14,7 @@ Before starting:
 While building (all in one go — do NOT split into separate rounds):
 - [ ] Implementation code
 - [ ] Unit tests
+- [ ] Test plan (`docs/test-plans/EP<N>-<name>.md`) — one file per epic, manual browser cases for PO
 - [ ] ADR (if a significant architecture decision was made)
 
 After building:
@@ -187,6 +188,29 @@ Write an ADR (`docs/adr/ADR-NNN-short-title.md`) whenever the implementation mak
 - Rejects a reasonable alternative that might be revisited
 
 Number sequentially. Use the template at `docs/adr/ADR-000-template.md`.
+
+---
+
+## Test Plan Structure
+
+One file per epic at `docs/test-plans/EP<N>-<name>.md`. Written for the PO to run manually in the browser — not technical, no code.
+
+Each test case:
+```markdown
+### TC-<story>-<letter> · Short description
+
+| | |
+|---|---|
+| **Story** | 2.1.1 |
+| **Pre-condition** | (optional — any required state) |
+| **Steps** | 1. Do this · 2. Do that |
+| **Expected** | What the tester should see |
+| **Result** | ☐ Pass ☐ Fail |
+```
+
+End each file with a **Regression** table: 3–5 cross-story smoke checks that confirm nothing broke.
+
+Naming: `EP1-patient-intake.md`, `EP2-appointments.md`, `EP3-staff-dashboard.md`.
 
 ---
 

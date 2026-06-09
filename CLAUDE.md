@@ -92,6 +92,7 @@ Claude reaches the codebase at `C:\LikeAHuman\LumiCare\`.
 | ADRs | [`docs/adr/`](docs/adr/README.md) | Devs | Short records of key architecture decisions |
 | Coding standards | [`.coding-standards/README.md`](.coding-standards/README.md) | Devs | TypeScript, Angular, Express rules and pre-commit checklist |
 | Changelog | [`CHANGELOG.md`](CHANGELOG.md) | Devs + Claude | One line per completed story: what changed and why |
+| Test plans | [`docs/test-plans/`](docs/test-plans/) | Devs + Claude | Manual browser test cases for PO review, one file per epic |
 
 **How to use these artifacts:**
 - Before starting a story: re-read the relevant section of `PRD.md` and check `docs/adr/` for any decisions that affect the feature
