@@ -1,0 +1,89 @@
+.form-title {
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--gold);
+  margin-bottom: 20px;
+}
+
+.field-row {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  gap: 16px;
+}
+
+.field {
+  margin-bottom: 16px;
+}
+
+.autocomplete {
+  position: relative;
+}
+
+.autocomplete-input {
+  width: 100%;
+}
+
+.autocomplete-list {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  background: var(--navy-card);
+  border: 1px solid var(--gold);
+  border-radius: 6px;
+  margin: 4px 0 0;
+  padding: 4px 0;
+  list-style: none;
+  z-index: 100;
+  max-height: 200px;
+  overflow-y: auto;
+}
+
+.autocomplete-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 8px 12px;
+  cursor: pointer;
+  gap: 12px;
+
+  &:hover {
+    background: var(--navy-light);
+  }
+}
+
+.patient-name {
+  font-weight: 500;
+}
+
+.patient-email {
+  font-size: 12px;
+  color: var(--text-muted);
+}
+
+.selected-tag {
+  display: inline-block;
+  margin-top: 6px;
+  padding: 3px 10px;
+  background: color-mix(in srgb, var(--gold) 15%, transparent);
+  color: var(--gold);
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 500;
+}
+
+.conflict-error {
+  background: color-mix(in srgb, var(--danger) 12%, transparent);
+  border: 1px solid color-mix(in srgb, var(--danger) 40%, transparent);
+  color: var(--danger);
+  border-radius: 6px;
+  padding: 10px 14px;
+  font-size: 13px;
+  margin-bottom: 16px;
+}
+
+.submit-btn {
+  width: 100%;
+  padding: 10px;
+  margin-top: 4px;
+}

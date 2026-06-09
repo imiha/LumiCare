@@ -1,0 +1,89 @@
+<div class="card">
+  <h2 class="form-title">Book Appointment</h2>
+
+  <form [formGroup]="form" (ngSubmit)="onSubmit()">
+    <div class="field">
+      <label>Patient *</label>
+      <div class="autocomplete">
+        <input
+          type="text"
+          class="autocomplete-input"
+          [value]="patientSearchText()"
+          (input)="onPatientSearch($any($event.target).value)"
+          (blur)="onPatientInputBlur()"
+          placeholder="Search by name or email..."
+        />
+        @if (patientResults().length > 0) {
+          <ul class="autocomplete-list">
+            @for (p of patientResults(); track p.id) {
+              <li class="autocomplete-item" (mousedown)="selectPatient(p)">
+                <span class="patient-name">{{ p.firstName }} {{ p.lastName }}</span>
+                <span class="patient-email">{{ p.email }}</span>
+              </li>
+            }
+          </ul>
+        }
+      </div>
+      @if (selectedPatient()) {
+        <span class="selected-tag">{{ selectedPatient()!.firstName }} {{ selectedPatient()!.lastName }}</span>
+      }
+    </div>
+
+    <div class="field-row">
+      <div class="field">
+        <label>Practitioner *</label>
+        <select formControlName="practitionerId" [attr.disabled]="!patientSelected() || null">
+          <option [ngValue]="null">Select...</option>
+          @for (s of staff(); track s.id) {
+            <option [ngValue]="s.id">{{ s.firstName }} {{ s.lastName }} — {{ s.role }}</option>
+          }
+        </select>
+      </div>
+      <div class="field">
+        <label>Service *</label>
+        <select
+          formControlName="serviceId"
+          [attr.disabled]="!patientSelected() || null"
+          (change)="onServiceChange($event)"
+        >
+          <option [ngValue]="null">Select...</option>
+          @for (svc of services(); track svc.id) {
+            <option [ngValue]="svc.id">{{ svc.name }} ({{ svc.duration }} min)</option>
+          }
+        </select>
+      </div>
+    </div>
+
+    <div class="field-row">
+      <div class="field">
+        <label>Date *</label>
+        <input type="date" formControlName="date" [attr.disabled]="!patientSelected() || null" />
+      </div>
+      <div class="field">
+        <label>Start Time *</label>
+        <input
+          type="time"
+          formControlName="startTime"
+          [attr.disabled]="!patientSelected() || null"
+          (change)="onStartTimeChange()"
+        />
+      </div>
+      <div class="field">
+        <label>End Time *</label>
+        <input type="time" formControlName="endTime" [attr.disabled]="!patientSelected() || null" />
+      </div>
+    </div>
+
+    @if (conflictError()) {
+      <div class="conflict-error">{{ conflictError() }}</div>
+    }
+
+    <button
+      type="submit"
+      class="btn-primary submit-btn"
+      [disabled]="form.invalid || submitting() || !patientSelected()"
+    >
+      {{ submitting() ? 'Booking...' : 'Book Appointment' }}
+    </button>
+  </form>
+</div>

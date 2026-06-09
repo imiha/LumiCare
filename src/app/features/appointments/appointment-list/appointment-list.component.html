@@ -1,0 +1,54 @@
+<div class="card">
+  <div class="list-header">
+    <h2 class="list-title">
+      Appointments <span class="count">{{ appointments().length }}</span>
+    </h2>
+    <input
+      type="date"
+      class="date-filter"
+      [ngModel]="selectedDate()"
+      (ngModelChange)="onDateChange($event)"
+    />
+  </div>
+
+  @if (loading()) {
+    <div class="empty-state">Loading appointments...</div>
+  } @else if (appointments().length === 0) {
+    <div class="empty-state">No appointments for this date.</div>
+  } @else {
+    <table class="appt-table">
+      <thead>
+        <tr>
+          <th>Time</th>
+          <th>Patient</th>
+          <th>Practitioner</th>
+          <th>Service</th>
+          <th>Status</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        @for (appt of appointments(); track appt.id) {
+          <tr class="appt-row" [class.cancelled]="appt.status === 'cancelled'">
+            <td class="time-cell">{{ timeRange(appt) }}</td>
+            <td>{{ appt.patientName }}</td>
+            <td>{{ appt.practitionerName }}</td>
+            <td>{{ appt.serviceName }}</td>
+            <td><app-status-badge [status]="appt.status" /></td>
+            <td>
+              @if (appt.status !== 'cancelled' && appt.status !== 'completed') {
+                <button
+                  class="btn-cancel"
+                  [disabled]="cancelling() === appt.id"
+                  (click)="onCancel(appt)"
+                >
+                  {{ cancelling() === appt.id ? '…' : 'Cancel' }}
+                </button>
+              }
+            </td>
+          </tr>
+        }
+      </tbody>
+    </table>
+  }
+</div>

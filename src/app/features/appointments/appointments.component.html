@@ -1,0 +1,17 @@
+<div class="appointments-layout">
+  <div class="appointments-left">
+    <app-appointment-form (appointmentCreated)="onAppointmentCreated($event)" />
+    @if (showSuccess()) {
+      <div class="success-banner">Appointment booked successfully</div>
+    }
+  </div>
+  <div class="appointments-right">
+    <app-appointment-list
+      [appointments]="appointments()"
+      [loading]="loading()"
+      [selectedDate]="selectedDate()"
+      (dateChanged)="onDateChanged($event)"
+      (appointmentCancelled)="onAppointmentCancelled($event)"
+    />
+  </div>
+</div>
