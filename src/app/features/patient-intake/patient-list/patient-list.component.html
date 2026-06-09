@@ -1,0 +1,45 @@
+<div class="card">
+  <div class="list-header">
+    <h2 class="list-title">
+      Patients <span class="count">{{ filteredPatients().length }}</span>
+    </h2>
+    <input
+      class="search-input"
+      type="text"
+      placeholder="Search by name or email..."
+      [ngModel]="searchQuery()"
+      (ngModelChange)="searchQuery.set($event)"
+    />
+  </div>
+
+  @if (loading()) {
+    <div class="empty-state">Loading patients...</div>
+  } @else if (filteredPatients().length === 0) {
+    <div class="empty-state">No patients found.</div>
+  } @else {
+    <table class="patient-table">
+      <thead>
+        <tr>
+          <th>Full Name</th>
+          <th>Email</th>
+          <th>Phone</th>
+          <th>Date of Birth</th>
+        </tr>
+      </thead>
+      <tbody>
+        @for (patient of filteredPatients(); track patient.id) {
+          <tr
+            class="patient-row"
+            [class.selected]="patient.id === selectedId()"
+            (click)="onSelect(patient)"
+          >
+            <td class="name-cell">{{ fullName(patient) }}</td>
+            <td>{{ patient.email }}</td>
+            <td>{{ patient.phone || '—' }}</td>
+            <td>{{ patient.dateOfBirth || '—' }}</td>
+          </tr>
+        }
+      </tbody>
+    </table>
+  }
+</div>
