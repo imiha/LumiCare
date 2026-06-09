@@ -10,6 +10,7 @@ How to interact with GitHub on this machine. Load when pushing branches or openi
 - **GitHub user:** `imiha`
 - **Repo:** `imiha/LumiCare`
 - **Token location:** Windows Credential Manager, target `git:https://github.com` (40-char `ghp_` token)
+- **Required token scopes:** `repo` (for pushes/PRs) + `project` (for GitHub Projects v2 board management). If a Projects API call returns `INSUFFICIENT_SCOPES`, the token needs the `project` scope added at https://github.com/settings/tokens
 - **The `Add-Type` block must be re-declared in every new PowerShell session** — C# types do not persist between tool calls
 
 ---
