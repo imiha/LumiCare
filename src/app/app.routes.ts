@@ -9,4 +9,11 @@ export const routes: Routes = [
         (m) => m.PatientIntakeComponent
       ),
   },
+  {
+    path: 'appointments',
+    loadComponent: () =>
+      import('./features/appointments/appointments.component').then(
+        (m) => m.AppointmentsComponent
+      ),
+  },
 ];
